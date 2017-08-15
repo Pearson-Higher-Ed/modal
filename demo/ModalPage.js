@@ -46,6 +46,17 @@ class ModalPage extends Component {
       srHeaderText          : intl.formatMessage(messages.srHeaderText)
     };
 
+    //Pass custom styles/classes into the component desired.
+    const customClassNames = {
+      base: 'pe-template__static-large'
+    }
+    const customStyles = {
+      content: {
+        top: '50%'
+      }
+    }
+    const footerClassNames = 'myFooterClassName';
+    
 
     return (
         <div className="displaySection">
@@ -55,7 +66,7 @@ class ModalPage extends Component {
           <br />
           <div className="elementContainer">
 
-            <ModalWithFooter id="modalWithFooter" isShown={firstModalIsShown} disableSuccessBtn={false} text={text} srHeaderText={text.srHeaderText} footerVisible={true} cancelBtnHandler={() => this.setState({firstModalIsShown:false})} successBtnHandler={() => this.setState({firstModalIsShown:false})} >
+            <ModalWithFooter id="modalWithFooter" isShown={firstModalIsShown} disableSuccessBtn={false} text={text} srHeaderText={text.srHeaderText} footerVisible={true} cancelBtnHandler={() => this.setState({firstModalIsShown:false})} successBtnHandler={() => this.setState({firstModalIsShown:false})} customClassNames={customClassNames} customStyles={customStyles} footerClassNames={footerClassNames}>
               <p>{text.bodyText}</p>
               <button onClick={() => this.setState({firstModalIsShown:false})}>Close Modal</button>
             </ModalWithFooter>

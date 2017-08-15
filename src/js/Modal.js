@@ -35,11 +35,10 @@ class Modal extends Component {
 
   render() {
 
-    const { isShown, footerVisible, text, children, disableSuccessBtn, shouldCloseOnOverlayClick, hideCloseButton, srHeaderText } = this.props;
-
+    const { isShown, footerVisible, text, children, disableSuccessBtn, shouldCloseOnOverlayClick, hideCloseButton, srHeaderText, customClassNames, customStyles, footerClassNames } = this.props;
     return (
           <BaseModal
-            className        = "pe-template__static-medium modalContent"
+            className        = {`${!!customClassNames ? customClassNames.base: `pe-template__static-medium `} modalContent`}
             overlayClassName = "modalOverlay"
             isOpen           = {isShown}
             onAfterOpen      = {this.afterOpen}
@@ -52,6 +51,7 @@ class Modal extends Component {
               labelledby  : "modalHeaderText",
               modal       : true
             }}
+            style={customStyles}
     	    >
 
             <div role="document">
@@ -68,7 +68,7 @@ class Modal extends Component {
                 {children}
               </div>
 
-              {this.renderFooter(footerVisible, text, disableSuccessBtn)}
+              {this.renderFooter(footerVisible, text, disableSuccessBtn, footerClassNames)}
 
             </div>
           </BaseModal>
@@ -92,6 +92,9 @@ Modal.propTypes = {
   hideCloseButton           : PropTypes.bool,
   isShown                   : PropTypes.bool,
   disableSuccessBtn         : PropTypes.bool,
+  customClassNames          : PropTypes.object,
+  customStyles              : PropTypes.object,
+  footerClassNames          : PropTypes.string 
 
 };
 
@@ -195,10 +198,10 @@ export function _removeWrapper() {
   document.body.appendChild(excludedElement);
 };
 
-export function _renderFooter(footerVisible, text, disableSuccessBtn) {
+export function _renderFooter(footerVisible, text, disableSuccessBtn, footerClassNames) {
   if (footerVisible) {
     return(
-      <div className="modalFooter" >
+      <div className={`modalFooter ${footerClassNames ? footerClassNames:''}`} >
         <button onClick={this.cancelBtnHandler} className="modalCancel pe-btn--btn_large">{text.modalCancelButtonText}</button>
         <button onClick={this.successBtnHandler} className="modalSave pe-btn__primary--btn_large" disabled={disableSuccessBtn}>{text.modalSaveButtonText}</button>
       </div>
