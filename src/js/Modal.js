@@ -38,7 +38,7 @@ class Modal extends Component {
     const { isShown, footerVisible, text, children, disableSuccessBtn, shouldCloseOnOverlayClick, hideCloseButton, srHeaderText, customClassNames, customStyles, footerClassNames } = this.props;
     return (
           <BaseModal
-            className        = {`${!!customClassNames ? customClassNames.base: `pe-template__static-medium `} modalContent`}
+            className        = {`${customClassNames ? customClassNames.base: `pe-template__static-medium `} modalContent`}
             overlayClassName = "modalOverlay"
             isOpen           = {isShown}
             onAfterOpen      = {this.afterOpen}
