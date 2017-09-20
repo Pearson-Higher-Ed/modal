@@ -11,7 +11,32 @@ Props:
   isShown:Boolean === true/false (opens the modal when true)
   successBtnHandler:Function === () => console.log("hi there")
   cancelBtnHandler:Function === () => console.log("hi there") function to handle closing modal should set of modalIsOpen to false
-
+  customClassNames: Object === base: 'myClass', afterOpen: 'myClass_after-open', beforeClose: 'myClass_before-close' 
+  customStyles: Object === {
+    overlay : {
+      position          : 'fixed',
+      top               : 0,
+      left              : 0,
+      right             : 0,
+      bottom            : 0,
+      backgroundColor   : 'rgba(255, 255, 255, 0.75)'
+    },
+      content : {
+      position                   : 'absolute',
+      top                        : '40px',
+      left                       : '40px',
+      right                      : '40px',
+      bottom                     : '40px',
+      border                     : '1px solid #ccc',
+      background                 : '#fff',
+      overflow                   : 'auto',
+      WebkitOverflowScrolling    : 'touch',
+      borderRadius               : '4px',
+      outline                    : 'none',
+      padding                    : '20px'
+    }
+  } 
+  footerClassNames: String ==="mySampleClassName"
 
 Install and save in your package.json:
 
