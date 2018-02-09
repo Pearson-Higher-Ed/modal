@@ -1,6 +1,6 @@
 # Usage
 
-This project supports [Node v4+](https://nodejs.org) and npm 2+ installed in your development toolchain.
+This project supports [Node v6+](https://nodejs.org) and npm 2+ installed in your development toolchain.
 
 Install and save in your package.json:
 
