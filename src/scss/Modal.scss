@@ -76,10 +76,14 @@
           .modalFooter {
             padding : 0px 40px 40px 40px;
             text-align: right;
+            display:flex;
+            flex-direction:row;
+            justify-content:flex-end;
           }
 
           .modalSave {
             margin-left: 14px;
+            order: 2;
           }
 
           .modalClose{
@@ -90,6 +94,7 @@
             text-decoration  : none;
             border           : none;
             background-color : inherit;
+            order:1;
           }
 
         };
@@ -135,10 +140,14 @@
           .modalFooter {
             padding : 0px 40px 40px 40px;
             text-align: right;
+            display:flex;
+            flex-direction:row;
+            justify-content:flex-end;
           }
 
           .modalSave {
             margin-left: 14px;
+            order:2;
           }
 
           .modalClose{
@@ -149,6 +158,7 @@
             text-decoration  : none;
             border           : none;
             background-color : inherit;
+            order:1;
           }
 
         };
@@ -200,11 +210,13 @@
           .modalSave{
             flex   : 1 0 auto;
             margin : 6px 4px 6px 4px;
+            order:2;
           }
 
           .modalCancel{
             flex   : 1 0 auto;
             margin : 6px 4px 6px 4px;
+            order:1;
           }
 
           .modalClose{
@@ -270,11 +282,13 @@
           .modalSave{
             flex   : 1 0 50%;
             margin : 6px 4px 6px 4px;
+            order:2;
           }
 
           .modalCancel{
             flex   : 1 0 50%;
             margin : 6px 4px 6px 4px;
+            order:1;
           }
 
           .modalClose{
