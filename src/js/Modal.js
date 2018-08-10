@@ -146,10 +146,11 @@ export default class Modal extends Component {
     if (footerVisible) {
       return (
         <div className="modalFooter">
-          <button onClick={this.cancelBtnHandler}
-                  className="modalCancel pe-btn--btn_large">{text.modalCancelButtonText}</button>
           <button onClick={this.successBtnHandler} className='modalSave pe-btn__primary--btn_large' id={saveBtnId}
                   disabled={disableSuccessBtn}>{text.modalSaveButtonText}</button>
+          <button onClick={this.cancelBtnHandler}
+                  className="modalCancel pe-btn--btn_large">{text.modalCancelButtonText}</button>
+          
         </div>
       )
     }
