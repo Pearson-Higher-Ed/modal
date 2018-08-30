@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { injectIntl }       from 'react-intl';
 import { messages }         from './translations/defaultMessages';
-import { Button }           from 'pearson-compounds';
 
 import { Modal as ModalWithOutFooter } from '../index';
 import { Modal as ModalWithFooter }    from '../index';
@@ -160,68 +159,62 @@ class ModalPage extends Component {
               <button onClick={() => this.setState({sixthModalIsShown:false})}>Close Modal</button>
             </ModalWithFooter>
 
-            <Button
-              btnType="primary"
-              btnSize="xlarge"
+            <button
+              className="pe-btn__primary--btn_xlarge"
               onClick={this.firstButtonHandler}
-              >
+            >
               {text.initiatingButtonText}
-            </Button>
+            </button>
 
             <br />
             <br />
 
-            <Button
-              btnType="cta"
-              btnSize="xlarge"
+            <button
+              className="pe-btn__cta--btn_xlarge"
               onClick={this.secondButtonHandler}
-              >
+            >
               {text.initiatingButtonText2}
-            </Button>
+            </button>
 
             <br />
             <br />
 
-            <Button
-              btnType="cta"
-              btnSize="xlarge"
+            <button
+              className="pe-btn__cta--btn_xlarge"
               onClick={this.thirdButtonHandler}
-              >
+            >
               {text.initiatingButtonText3}
-            </Button>
+            </button>
 
             <br />
             <br />
 
-            <Button
-              btnType="cta"
-              btnSize="xlarge"
+            <button
+              className="pe-btn__cta--btn_xlarge"
               onClick={this.fourthButtonHandler}
-              >
+            >
               {text.initiatingButtonText4}
-            </Button>
+            </button>
 
             <br/>
             <br/>
 
-            <Button
-              btnType="cta"
-              btnSize="xlarge"
+            <button
+              className="pe-btn__cta--btn_xlarge"
               onClick={this.fifthButtonHandler}
-              >
+            >
               Modal that scrolls the page
-            </Button>
+            </button>
 
             <br/>
             <br/>
 
-            <Button
-              btnType="cta"
-              btnSize="xlarge"
+            <button
+              className="pe-btn__cta--btn_xlarge"
               onClick={this.sixthButtonHandler}
-              >
+            >
               {text.initiatingButtonText6}
-            </Button>
+            </button>
           </div>
 
           <div className="code">

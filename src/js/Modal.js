@@ -1,7 +1,6 @@
 import React, { Component }     from 'react';
 import PropTypes                from 'prop-types';
 import { default as BaseModal } from 'react-modal';
-import { Icon }                 from 'pearson-compounds';
 import ally                     from 'ally.js';
 
 import '../scss/Modal.scss';
@@ -150,7 +149,7 @@ export default class Modal extends Component {
                   disabled={disableSuccessBtn}>{text.modalSaveButtonText}</button>
           <button onClick={this.cancelBtnHandler}
                   className="modalCancel pe-btn--btn_large">{text.modalCancelButtonText}</button>
-          
+
         </div>
       )
     }
@@ -185,9 +184,18 @@ export default class Modal extends Component {
 
               <div id="modalHeader" className={`modalHeader ${headerClass}`}>
                 {!footerVisible && !hideCloseButton &&
-                  <button className="modalClose pe-icon--btn" onClick={this.cancelBtnHandler}
-                          aria-label={text.closeButtonSRText}>
-                    <Icon name="remove-sm-24" />
+                  <button
+                    className="modalClose pe-icon--btn"
+                    onClick={this.cancelBtnHandler}
+                    aria-label={text.closeButtonSRText}
+                  >
+                    <svg role="img"
+                         ariaLabelledby="r2"
+                         focusable="false"
+                         className="pe-icon--remove-sm-24">
+                      <title id="r2">Close modal</title>
+                      <use xlinkHref="#remove-sm-24"></use>
+                    </svg>
                   </button>}
                 {text.headerTitle  &&
                   <h2 id="modalHeaderText" className="modalHeaderText pe-title">
