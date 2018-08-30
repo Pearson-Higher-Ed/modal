@@ -190,10 +190,10 @@ export default class Modal extends Component {
                     aria-label={text.closeButtonSRText}
                   >
                     <svg role="img"
-                         ariaLabelledby="r2"
+                         ariaLabelledby="close-modal-button"
                          focusable="false"
                          className="pe-icon--remove-sm-24">
-                      <title id="r2">Close modal</title>
+                      <title id="close-modal-button">Close modal</title>
                       <use xlinkHref="#remove-sm-24"></use>
                     </svg>
                   </button>}
