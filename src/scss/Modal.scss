@@ -1,10 +1,11 @@
-@import '../../node_modules/pearson-elements/scss/elements/color/variables';
-@import '../../node_modules/pearson-elements/scss/elements/buttons/variables';
-@import '../../node_modules/pearson-elements/scss/elements/buttons/mixins';
-@import '../../node_modules/pearson-elements/scss/elements/buttons/buttons';
-@import '../../node_modules/pearson-elements/scss/elements/responsive-utilities/variables';
-@import '../../node_modules/pearson-elements/scss/elements/responsive-utilities/functions';
-@import '../../node_modules/pearson-elements/scss/elements/responsive-utilities/responsive-utilities';
+@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements/color/variables';
+@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements/buttons/variables';
+@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements/buttons/mixins';
+@import '../../node_modules/@pearson-components/elements-sdk/src/styles/base/mixins';
+@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements/buttons/buttons';
+@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements/responsive-utilities/variables';
+@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements/responsive-utilities/functions';
+@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements/responsive-utilities/responsive-utilities';
 
   .ReactModal__Body--open {
     overflow : hidden;
@@ -28,6 +29,9 @@
 
   h2.modalHeaderText{
     margin : 0px;
+  }
+  button:focus:after {
+  	box-sizing: content-box;
   }
 
   .modalClose {
