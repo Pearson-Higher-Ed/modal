@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@pearson-components/npm-scripts": "^0.5.5",
-    "@pearson-components/elements-sdk": "2.0.3",
+    "@pearson-components/elements-sdk": "^2.0.3",
     "babel-core": "^6.23.1",
     "babel-eslint": "^7.1.1",
     "babel-jest": "^18.0.0",
