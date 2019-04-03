@@ -200,6 +200,12 @@ export default class Modal extends Component {
                 {text.headerTitle  &&
                   <h2 id="modalHeaderText" className="modalHeaderText pe-title">
                     {text.headerTitle}
+                    {this.props.postTitleText &&
+                      <span>
+                        <span>&nbsp;</span>
+                        <span className={this.props.postTitleTextClass}>{this.props.postTitleText}</span>
+                      </span>
+                    }
                   </h2>}
                 {!text.headerTitle &&
                   <span id="modalHeaderText" className="pe-sr-only">
@@ -236,11 +242,14 @@ Modal.propTypes = {
   ariaHideApp               : PropTypes.bool,
   appElement                : PropTypes.instanceOf(Element),
   scrollWithPage            : PropTypes.bool,
-  saveBtnId                 : PropTypes.string
+  saveBtnId                 : PropTypes.string,
+  postTitleText             : PropTypes.string,
+  postTitleTextClass        : PropTypes.string
 };
 
 Modal.defaultProps = {
   shouldCloseOnOverlayClick: true,
   headerClass: '',
-  scrollWithPage: false
+  scrollWithPage: false,
+  postTitleTextClass: ''
 };
