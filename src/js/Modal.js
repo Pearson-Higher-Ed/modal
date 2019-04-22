@@ -25,7 +25,7 @@ export default class Modal extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.setDimensions);
+    window.removeEventListener('resize', this.setDimensions);
   }
 
   handleKeyDown = (event) => {
@@ -55,7 +55,7 @@ export default class Modal extends Component {
     modalContent.focus();
     modalContent.addEventListener('keydown', this.handleKeyDown);
 
-    window.addEventListener("resize", this.setDimensions);
+    window.addEventListener('resize', this.setDimensions);
     this.setDimensions();
   };
 
@@ -63,7 +63,7 @@ export default class Modal extends Component {
     this.cancelBtnHandler();
     this.state.shiftTab = false;
     this.state.tab = false;
-    window.removeEventListener("resize", this.setDimensions);
+    window.removeEventListener('resize', this.setDimensions);
   };
 
   successBtnHandler = () => {
@@ -145,11 +145,20 @@ export default class Modal extends Component {
     if (footerVisible) {
       return (
         <div className="modalFooter">
-          <button onClick={this.successBtnHandler} className='modalSave pe-btn__primary--btn_large' id={saveBtnId}
-                  disabled={disableSuccessBtn}>{text.modalSaveButtonText}</button>
-          <button onClick={this.cancelBtnHandler}
-                  className="modalCancel pe-btn--btn_large">{text.modalCancelButtonText}</button>
-
+          <button
+            onClick={this.successBtnHandler}
+            className="modalSave pe-btn__primary--btn_large"
+            id={saveBtnId}
+            disabled={disableSuccessBtn}
+          >
+            {text.modalSaveButtonText}
+          </button>
+          <button
+            onClick={this.cancelBtnHandler}
+            className="modalCancel pe-btn--btn_large"
+          >
+            {text.modalCancelButtonText}
+          </button>
         </div>
       )
     }
@@ -158,7 +167,7 @@ export default class Modal extends Component {
   render() {
     const { isShown, footerVisible, text, children, disableSuccessBtn,
             shouldCloseOnOverlayClick, hideCloseButton, srHeaderText, headerClass,
-            scrollWithPage, saveBtnId } = this.props;
+            scrollWithPage, saveBtnId, shouldReturnFocusAfterClose } = this.props;
     const scrollCheck = (scrollWithPage || !footerVisible) ? { overlay: { overflowY: 'auto' } } : {};
 
     return (
@@ -178,6 +187,7 @@ export default class Modal extends Component {
               labelledby  : 'modalHeaderText',
               modal       : true
             }}
+            shouldReturnFocusAfterClose={shouldReturnFocusAfterClose}
     	    >
 
             <div role="document">
@@ -229,27 +239,29 @@ export default class Modal extends Component {
 
 
 Modal.propTypes = {
-  text                      : PropTypes.object.isRequired,
-  srHeaderText              : PropTypes.string.isRequired,
-  headerClass               : PropTypes.string,
-  successBtnHandler         : PropTypes.func,
-  cancelBtnHandler          : PropTypes.func,
-  footerVisible             : PropTypes.bool,
-  shouldCloseOnOverlayClick : PropTypes.bool,
-  hideCloseButton           : PropTypes.bool,
-  isShown                   : PropTypes.bool,
-  disableSuccessBtn         : PropTypes.bool,
-  ariaHideApp               : PropTypes.bool,
-  appElement                : PropTypes.instanceOf(Element),
-  scrollWithPage            : PropTypes.bool,
-  saveBtnId                 : PropTypes.string,
-  postTitleText             : PropTypes.string,
-  postTitleTextClass        : PropTypes.string
+  text                        : PropTypes.object.isRequired,
+  srHeaderText                : PropTypes.string.isRequired,
+  headerClass                 : PropTypes.string,
+  successBtnHandler           : PropTypes.func,
+  cancelBtnHandler            : PropTypes.func,
+  footerVisible               : PropTypes.bool,
+  shouldCloseOnOverlayClick   : PropTypes.bool,
+  hideCloseButton             : PropTypes.bool,
+  isShown                     : PropTypes.bool,
+  disableSuccessBtn           : PropTypes.bool,
+  ariaHideApp                 : PropTypes.bool,
+  appElement                  : PropTypes.instanceOf(Element),
+  scrollWithPage              : PropTypes.bool,
+  saveBtnId                   : PropTypes.string,
+  postTitleText               : PropTypes.string,
+  postTitleTextClass          : PropTypes.string,
+  shouldReturnFocusAfterClose : PropTypes.bool
 };
 
 Modal.defaultProps = {
   shouldCloseOnOverlayClick: true,
   headerClass: '',
   scrollWithPage: false,
-  postTitleTextClass: ''
+  postTitleTextClass: '',
+  shouldReturnFocusAfterClose: false
 };
