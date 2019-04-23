@@ -263,5 +263,5 @@ Modal.defaultProps = {
   headerClass: '',
   scrollWithPage: false,
   postTitleTextClass: '',
-  shouldReturnFocusAfterClose: false
+  shouldReturnFocusAfterClose: true
 };
