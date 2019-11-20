@@ -3,7 +3,6 @@ sudo: false
 node_js:
 - 9
 script:
-- npm cache clean
 - npm run ci
 - chmod 777 ./node_modules/@pearson-components/npm-scripts/shell_scripts/run_selenium_ci_tests.sh
 - export TEST_GROUP=desktop-regression
