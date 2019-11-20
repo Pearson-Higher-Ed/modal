@@ -192,7 +192,7 @@ export default class Modal extends Component {
 
             <div role="document">
               {this.props.displayErrorBanner && (
-                <div className={this.props.bannerStyles}>
+                <div className={this.props.bannerWrapperClass}>
                   <p className="pe-label">{text.bannerBody}</p>
                   {this.props.secondaryLinkCallback && (
                     <button
@@ -289,7 +289,7 @@ Modal.propTypes = {
   postTitleTextClass          : PropTypes.string,
   shouldReturnFocusAfterClose : PropTypes.bool,
   displayErrorBanner          : PropTypes.bool,
-  bannerStyles                : PropTypes.string,
+  bannerWrapperClass          : PropTypes.string,
   closeBanner                 : PropTypes.func,
   secondaryLinkCallback       : PropTypes.func
 };
