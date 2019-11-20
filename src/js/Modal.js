@@ -289,7 +289,9 @@ Modal.propTypes = {
   postTitleTextClass          : PropTypes.string,
   shouldReturnFocusAfterClose : PropTypes.bool,
   displayErrorBanner          : PropTypes.bool,
-  bannerStyles                : PropTypes.string
+  bannerStyles                : PropTypes.string,
+  closeBanner                 : PropTypes.func,
+  secondaryLinkCallback       : PropTypes.func
 };
 
 Modal.defaultProps = {
