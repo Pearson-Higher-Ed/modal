@@ -191,18 +191,50 @@ export default class Modal extends Component {
     	    >
 
             <div role="document">
-
+              {this.props.displayErrorBanner && (
+                <div className={this.props.bannerWrapperClass}>
+                  <p className="pe-label">{text.bannerBody}</p>
+                  {this.props.secondaryLinkCallback && (
+                    <button
+                      type="button"
+                      onClick={() => this.props.secondaryLinkCallback && this.props.secondaryLinkCallback()}
+                      className="pe-link"
+                    >
+                      {text.link}
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    className="pe-icon--btn"
+                    onClick={() => this.props.closeBanner && this.props.closeBanner()}
+                    aria-label={text.closeButtonSRText}
+                  >
+                    <svg
+                      role="img"
+                      ariaLabelledby="close-banner-button"
+                      focusable="false"
+                      className="pe-icon--remove-sm-24"
+                    >
+                      <title id="close-banner-button">Close banner</title>
+                      <use xlinkHref="#remove-sm-24"></use>
+                    </svg>
+                  </button>
+                </div>
+              )}
               <div id="modalHeader" className={`modalHeader ${headerClass}`}>
                 {!footerVisible && !hideCloseButton &&
                   <button
+                    type="button"
                     className="modalClose pe-icon--btn"
                     onClick={this.cancelBtnHandler}
                     aria-label={text.closeButtonSRText}
                   >
-                    <svg role="img"
-                         ariaLabelledby="close-modal-button"
-                         focusable="false"
-                         className="pe-icon--remove-sm-24">
+                    <svg
+                      role="img"
+                      ariaLabelledby="close-modal-button"
+                      focusable="false"
+                      className="pe-icon--remove-sm-24"
+                    >
                       <title id="close-modal-button">Close modal</title>
                       <use xlinkHref="#remove-sm-24"></use>
                     </svg>
@@ -256,7 +288,11 @@ Modal.propTypes = {
   saveBtnId                   : PropTypes.string,
   postTitleText               : PropTypes.string,
   postTitleTextClass          : PropTypes.string,
-  shouldReturnFocusAfterClose : PropTypes.bool
+  shouldReturnFocusAfterClose : PropTypes.bool,
+  displayErrorBanner          : PropTypes.bool,
+  bannerWrapperClass          : PropTypes.string,
+  closeBanner                 : PropTypes.func,
+  secondaryLinkCallback       : PropTypes.func
 };
 
 Modal.defaultProps = {
@@ -265,5 +301,6 @@ Modal.defaultProps = {
   headerClass: '',
   scrollWithPage: false,
   postTitleTextClass: '',
-  shouldReturnFocusAfterClose: true
+  shouldReturnFocusAfterClose: true,
+  displayErrorBanner: false
 };
