@@ -167,13 +167,12 @@ export default class Modal extends Component {
   render() {
     const { isShown, footerVisible, text, children, disableSuccessBtn,
             shouldCloseOnOverlayClick, hideCloseButton, srHeaderText, headerClass,
-            scrollWithPage, saveBtnId, shouldReturnFocusAfterClose } = this.props;
+            scrollWithPage, saveBtnId, shouldReturnFocusAfterClose, className } = this.props;
     const scrollCheck = (scrollWithPage || !footerVisible) ? { overlay: { overflowY: 'auto' } } : {};
-    const defaultClassName = 'pe-template__static-medium modalContent';
 
     return (
           <BaseModal
-            className        = {this.props.className ? defaultClassName + ' ' + this.props.className : defaultClassName}
+            className        = {`pe-template__static-medium modalContent ${className}`}
             overlayClassName = "modalOverlay"
             isOpen           = {isShown}
             onAfterOpen      = {this.afterOpen}
@@ -261,6 +260,7 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
+  className: '',
   shouldCloseOnOverlayClick: true,
   headerClass: '',
   scrollWithPage: false,
