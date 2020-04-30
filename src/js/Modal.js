@@ -13,9 +13,14 @@ export default class Modal extends Component {
 
     this.state = {
       shiftTab: false,
-      tab: false
+      tab: false,
+      overlayPadding: ''
     };
   };
+
+  componentDidMount() {
+    window.addEventListener('resize', this.setDimensions);
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps && !nextProps.isShown && this.props.isShown) {
@@ -24,19 +29,14 @@ export default class Modal extends Component {
     }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.setDimensions);
-  }
-
   handleKeyDown = (event) => {
     if (!event.shiftKey && event.which === 9 && !this.state.tab) {
-      this.state.tab = true;
-      return;
+      return this.setState({ tab: true });
     }
 
     if (event.shiftKey && event.which === 9 && !this.state.shiftTab && !this.state.tab) {
       event.preventDefault();
-      this.state.shiftTab = true;
+      this.setState({ shiftTab: true });
       const tabbableConfig = { context: '.modalContent' };
       const tabbableElements = ally.query.tabbable(tabbableConfig);
       tabbableElements[tabbableElements.length-1].focus();
@@ -45,7 +45,6 @@ export default class Modal extends Component {
 
   afterOpen = () => {
     const modalContent = document.getElementsByClassName('modalContent')[0];
-
     // apply accessibility wrapper if no appElement is given
     if (!this.props.appElement) {
       this.applyWrapper();
@@ -55,14 +54,15 @@ export default class Modal extends Component {
     modalContent.focus();
     modalContent.addEventListener('keydown', this.handleKeyDown);
 
-    window.addEventListener('resize', this.setDimensions);
     this.setDimensions();
   };
 
   onClose = () => {
     this.cancelBtnHandler();
-    this.state.shiftTab = false;
-    this.state.tab = false;
+    this.setState({
+      shiftTab: false,
+      tab: false
+    });
     window.removeEventListener('resize', this.setDimensions);
   };
 
@@ -101,9 +101,10 @@ export default class Modal extends Component {
     const headerHeight  = header.getBoundingClientRect().height;
     const footerHeight  = footer ? footer.getBoundingClientRect().height : 0;
 
+    this.setState({ overlayPadding: paddingHeight > 20 ? `${paddingHeight}px` : '20px' });
+
     modalBody.style.maxHeight = (this.props.scrollWithPage || !this.props.footerVisible)
       ? 'none' : `${windowHeight - (headerHeight + footerHeight + 120)}px`;
-    modalOverlay.style.paddingTop = paddingHeight > 20 ? `${paddingHeight}px` : '20px';
     // conditional borders on modalbody if scrollbar is present...
     modalBody.className = (modalBody.offsetHeight < modalBody.scrollHeight && !headerCloseButton) ? 'modalBody modalBody_border' : 'modalBody modalBody_border_normal';
   };
@@ -141,34 +142,10 @@ export default class Modal extends Component {
     document.body.appendChild(excludedElement);
   };
 
-  renderFooter = (footerVisible, text, disableSuccessBtn, saveBtnId) => {
-    if (footerVisible) {
-      return (
-        <div className="modalFooter">
-          <button
-            onClick={this.successBtnHandler}
-            className="modalSave pe-btn__primary--btn_large"
-            id={saveBtnId}
-            disabled={disableSuccessBtn}
-          >
-            {text.modalSaveButtonText}
-          </button>
-          <button
-            onClick={this.cancelBtnHandler}
-            className="modalCancel pe-btn--btn_large"
-          >
-            {text.modalCancelButtonText}
-          </button>
-        </div>
-      )
-    }
-  };
-
   render() {
     const { isShown, footerVisible, text, children, disableSuccessBtn,
             shouldCloseOnOverlayClick, hideCloseButton, srHeaderText, headerClass,
             scrollWithPage, saveBtnId, shouldReturnFocusAfterClose, className } = this.props;
-    const scrollCheck = (scrollWithPage || !footerVisible) ? { overlay: { overflowY: 'auto' } } : {};
 
     return (
           <BaseModal
@@ -182,7 +159,12 @@ export default class Modal extends Component {
             shouldCloseOnOverlayClick = {shouldCloseOnOverlayClick}
             appElement       = {this.props.appElement}
             ariaHideApp      = {this.props.ariaHideApp}
-            style            = {scrollCheck}
+            style            = {{
+              overlay: {
+                overflowY: (scrollWithPage || !footerVisible) ? { overlay: { overflowY: 'auto' } } : {},
+                paddingTop: this.props.overlayPadding || this.state.overlayPadding
+              }
+            }}
             aria             = {{
               labelledby  : 'modalHeaderText',
               modal       : true
@@ -258,9 +240,24 @@ export default class Modal extends Component {
               <div className="modalBody" tabIndex={0}>
                 {children}
               </div>
-
-              {this.renderFooter(footerVisible, text, disableSuccessBtn, saveBtnId)}
-
+              {footerVisible && (
+                <div className="modalFooter">
+                  <button
+                    onClick={this.successBtnHandler}
+                    className="modalSave pe-btn__primary--btn_large"
+                    id={saveBtnId}
+                    disabled={disableSuccessBtn}
+                  >
+                    {text.modalSaveButtonText}
+                  </button>
+                  <button
+                    onClick={this.cancelBtnHandler}
+                    className="modalCancel pe-btn--btn_large"
+                  >
+                    {text.modalCancelButtonText}
+                  </button>
+                </div>
+              )}
             </div>
           </BaseModal>
     )
@@ -292,7 +289,8 @@ Modal.propTypes = {
   displayErrorBanner          : PropTypes.bool,
   bannerWrapperClass          : PropTypes.string,
   closeBanner                 : PropTypes.func,
-  secondaryLinkCallback       : PropTypes.func
+  secondaryLinkCallback       : PropTypes.func,
+  overlayPadding              : PropTypes.string
 };
 
 Modal.defaultProps = {
