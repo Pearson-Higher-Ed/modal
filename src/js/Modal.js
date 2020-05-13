@@ -161,7 +161,7 @@ export default class Modal extends Component {
             ariaHideApp      = {this.props.ariaHideApp}
             style            = {{
               overlay: {
-                overflowY: (scrollWithPage || !footerVisible) ? { overlay: { overflowY: 'auto' } } : {},
+                overflowY: (scrollWithPage || !footerVisible) ? 'auto' : null,
                 paddingTop: this.props.overlayPadding || this.state.overlayPadding
               }
             }}
