@@ -214,6 +214,7 @@ export default class Modal extends Component {
                   >
                     <svg
                       role="img"
+                      aria-hidden={true}
                       ariaLabelledby="close-modal-button"
                       focusable="false"
                       className="pe-icon--remove-sm-24"
