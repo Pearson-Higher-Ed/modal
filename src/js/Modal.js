@@ -239,7 +239,7 @@ export default class Modal extends Component {
                   </span>}
               </div>
 
-              <div className="modalBody" tabIndex={0}>
+              <div className="modalBody">
                 {children}
               </div>
               {footerVisible && (
