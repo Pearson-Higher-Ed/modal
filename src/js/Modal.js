@@ -95,18 +95,20 @@ export default class Modal extends Component {
     const header = document.getElementsByClassName('modalHeader')[0];
     const footer = document.getElementsByClassName('modalFooter')[0];
 
-    // apply padding based on clientHeight...
-    const windowHeight  = window.innerHeight;
-    const paddingHeight = (windowHeight - modalContent.offsetHeight) / 2;
-    const headerHeight  = header.getBoundingClientRect().height;
-    const footerHeight  = footer ? footer.getBoundingClientRect().height : 0;
+    if(modalBody && modalContent) {    
+      // apply padding based on clientHeight...
+      const windowHeight  = window.innerHeight;
+      const paddingHeight = (windowHeight - modalContent.offsetHeight) / 2;
+      const headerHeight  = header.getBoundingClientRect().height;
+      const footerHeight  = footer ? footer.getBoundingClientRect().height : 0;
 
-    this.setState({ overlayPadding: paddingHeight > 20 ? `${paddingHeight}px` : '20px' });
+      this.setState({ overlayPadding: paddingHeight > 20 ? `${paddingHeight}px` : '20px' });
 
-    modalBody.style.maxHeight = (this.props.scrollWithPage || !this.props.footerVisible)
-      ? 'none' : `${windowHeight - (headerHeight + footerHeight + 120)}px`;
-    // conditional borders on modalbody if scrollbar is present...
-    modalBody.className = (modalBody.offsetHeight < modalBody.scrollHeight && !headerCloseButton) ? 'modalBody modalBody_border' : 'modalBody modalBody_border_normal';
+      modalBody.style.maxHeight = (this.props.scrollWithPage || !this.props.footerVisible)
+        ? 'none' : `${windowHeight - (headerHeight + footerHeight + 120)}px`;
+      // conditional borders on modalbody if scrollbar is present...
+      modalBody.className = (modalBody.offsetHeight < modalBody.scrollHeight && !headerCloseButton) ? 'modalBody modalBody_border' : 'modalBody modalBody_border_normal';
+    }
   };
 
   applyWrapper = () => {
