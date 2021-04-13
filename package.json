@@ -9,14 +9,8 @@
   "scripts": {
     "start": "npm run serve",
     "serve": "NODE_ENV=development webpack-dev-server --hot",
-    "gh-pages": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/gh-pages.js",
     "test": "jest --no-cache --coverage",
     "build": "NODE_ENV=production webpack -p",
-    "gen-changelog": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/gen-changelog.js",
-    "version": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/version.js",
-    "ci": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/ci.js",
-    "release": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/release.js",
-    "verify": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/verify.js",
     "postpublish": "npm access public && echo 'Package scope set to public!'"
   },
   "repository": {
@@ -48,8 +42,7 @@
     "verbose": true
   },
   "devDependencies": {
-    "@pearson-components/npm-scripts": "^0.5.5",
-    "@pearson-components/elements-sdk": "^2.0.3",
+    "@pearson-components/elements-sdk": "2.2.0",
     "babel-core": "^6.23.1",
     "babel-eslint": "^7.1.1",
     "babel-jest": "^18.0.0",
@@ -97,7 +90,6 @@
   ],
   "dependencies": {
     "ally.js": "^1.4.1",
-    "npm-scripts": "^1.4.0",
     "react-modal": "3.1.7"
   }
 }
